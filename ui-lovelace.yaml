@@ -1,0 +1,656 @@
+resources:
+  - url: /local/custom-lovelace/custom_ui/weather-card.js
+    type: js
+  - url: /local/custom-lovelace/card-tools.js
+    type: js
+  - url: /local/custom-lovelace/popup-card.js
+    type: js
+  - url: /local/custom-lovelace/layout-card.js
+    type: js
+  - url: /local/custom-lovelace/card-modder.js
+    type: js
+  - url: /local/custom-lovelace/vertical-stack-in-card.js?v=0.1.2
+    type: js
+  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.0.1
+    type: module
+  - url: /local/custom-lovelace/simple-weather-card.bundle.js?v=0.2.0
+    type: module
+  - url: /local/custom-lovelace/swipe-card/swipe-card.js
+    type: module
+  - url: /local/custom-lovelace/mini-graph-card-bundle.js?v=0.3.0
+    type: module
+  - url: /local/custom-lovelace/state-switch.js
+    type: js
+  - url: /local/custom-lovelace/fold-entity-row.js
+    type: js
+  - url: /local/custom-lovelace/button-card.js
+    type: module
+  - url: /local/custom-lovelace/text-divider-row.js
+    type: module
+  - url: /local/multiple-entity-row.js?v=1.2.1
+    type: js
+## custom header ##
+cch:
+  options: clock
+  exceptions:
+    - conditions:
+        user_agent: Mobile
+        media_query: "(max-width: 600px)"
+      config:
+        default_tab: 4
+views:
+## Light##
+  - badges: []
+    icon: 'mdi:lightbulb-on-outline'
+    path: 'light'
+    background: center / cover no-repeat url("/local/4263.jpg") fixed
+    title: Light
+    cards:
+      - type: custom:card-modder
+        style:
+          background-color: rgba(0,0,0,0)
+          color: rgb(0, 0, 0)
+        card:
+          type: custom:vertical-stack-in-card
+          title: Đèn
+          cards:
+            - type: custom:card-modder
+              style:
+                background-color: rgba(0,0,0,0)
+                background-size: 100% 100%
+                color: rgb(0 , 0, 0)
+              card:
+                type: entities
+                show_header_toggle: false
+                entities:
+                  - type: 'custom:text-divider-row'
+                    text: Phòng khách
+                  - entity: input_boolean.gara ## change your entity id##
+                    name: Đèn chính
+                    icon: mdi:lightbulb-outline
+                  - entity: input_boolean.gara ## change your entity id##
+                    name: Đèn phụ
+                    icon: mdi:lightbulb-outline
+                  - type: 'custom:text-divider-row'
+                    text: Phòng ngủ
+                  - entity: input_boolean.gara ## change your entity id##
+                    name: Đèn chính
+                    icon: mdi:lightbulb-outline
+                  - entity: input_boolean.gara ## change your entity id ##
+                    name: Đèn ngủ
+                    icon: mdi:ceiling-light
+                  - type: 'custom:text-divider-row'
+                    text: Nhà bếp
+                  - entity: input_boolean.gara ## change your entity id ##
+                    name: Đèn chính
+                    icon: mdi:lightbulb-outline
+                  - type: 'custom:text-divider-row'
+                    text: Nhà vệ sinh
+                  - entity: input_boolean.gara ## change your entity id ##
+                    name: Đèn 
+                    icon: mdi:lightbulb-outline
+      - type: custom:card-modder
+        style:
+          background-color: rgba(0,0,0,0)
+          color: rgb(0, 0, 0)
+        card:
+          type: custom:vertical-stack-in-card
+          title: Cảm biến
+          cards:
+            - type: 'custom:text-divider-row'
+              text: Phòng khách
+            - type: custom:card-modder
+              style:
+                background-color: rgba(0,0,0,0)
+                background-size: 100% 100%
+                color: rgb(255 , 255, 255)
+              card:
+                type: horizontal-stack
+                cards:
+                  - type: custom:card-modder
+                    style:
+                      background-color: rgba(0,0,0,0)
+                      color: rgb(255, 255, 255)
+                    card:
+                      type: glance
+                      show_name: true
+                      show_state: true
+                      entities:
+                        - entity: sensor.dark_sky_temperature ## change your entity id ##
+                          name: Nhiệt độ
+                  - type: custom:card-modder
+                    style:
+                      background-color: rgba(0,0,0,0)
+                      color: rgb(0, 0, 0)
+                    card:
+                      type: glance
+                      show_name: true
+                      show_state: true
+                      entities:
+                        - entity: sensor.dark_sky_humidity ## change your entity id ##
+                          name: Độ ẩm
+            - type: 'custom:text-divider-row'
+              text: Phòng ngủ
+            - type: custom:card-modder
+              style:
+                background-color: rgba(0,0,0,0)
+                background-size: 100% 100%
+                color: rgb(0 , 0, 0)
+              card:
+                type: horizontal-stack
+                cards:
+                  - type: custom:card-modder
+                    style:
+                      background-color: rgba(0,0,0,0)
+                      color: rgb(0, 0, 0)
+                    card:
+                      type: glance
+                      show_name: true
+                      show_state: true
+                      entities:
+                        - entity: sensor.dark_sky_temperature ## change your entity id ##
+                          name: Nhiệt độ
+                  - type: custom:card-modder
+                    style:
+                      background-color: rgba(0,0,0,0)
+                      color: rgb(0, 0, 0)
+                    card:
+                      type: glance
+                      show_name: true
+                      show_state: true
+                      entities:
+                        - entity: sensor.dark_sky_humidity ## change your entity id ##
+                          name: Độ ẩm
+  - badges: []
+    icon: 'mdi:remote'
+    path: 'remote'
+    background: center / cover no-repeat url("/local/90060.jpg") fixed
+    title: Remote
+    cards:
+      - type: custom:card-modder
+        style:
+          background-color: rgba(0, 0, 0, 0)
+          background-size: 100% 100%
+        card:
+          type: custom:vertical-stack-in-card
+          cards:
+            - type: picture-elements
+              image: /local/images/short-empty.png?v2.2
+              elements:
+                - type: image
+                  entity: input_boolean.tivi
+                  tap_action: 
+                    action: toggle
+                  image: /local/images/remote/tv.svg?v1
+                  state_filter: 
+                    "on": invert(.5) sepia(1) saturate(8) hue-rotate(10deg)
+                  style:
+                    top: 50%
+                    left: 20%
+                    <<: &style_anchor 
+                      width: 1.25em
+                      height: 1.25em
+                      padding: 15px
+                      background-color: rgba(0,0,0,0)
+                      border-radius: 50%
+                      box-shadow: 0 3px 5px -1px rgba(0,0,0,0), 0 6px 10px 0 rgba(0,0,0,0.1), 0 1px 18px 0 rgba(0,0,0,0.1)
+                - type: image
+                  entity: input_boolean.fan
+                  tap_action: 
+                    action: toggle
+                  image: /local/images/remote/fan.svg?v1
+                  state_filter: 
+                    "on": invert(.5) sepia(1) saturate(8) hue-rotate(10deg)
+                  style: 
+                    <<: *style_anchor
+                    top: 50%
+                    left: 50%    
+                - type: image
+                  entity: input_boolean.home
+                  tap_action: 
+                    action: toggle
+                  image: /local/images/remote/air-conditioner.svg?v1
+                  state_filter: 
+                    "on": invert(.5) sepia(1) saturate(8) hue-rotate(10deg)
+                  style: 
+                    <<: *style_anchor
+                    top: 50%
+                    left: 80%
+            - type: conditional
+              conditions:
+               - entity:  input_boolean.tivi
+                 state: "on"
+              card:
+                type: picture-elements
+                image: /local/images/a2.jpg?v2.4
+                elements: 
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/power.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 10%
+                      left: 20%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/cast.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 10%
+                      left: 50%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/menu.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 10%
+                      left: 80% 
+                  
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/volume-up.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 30%
+                      left: 20% 
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/up.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 30%
+                      left: 50%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/up-triangle.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 30%
+                      left: 80%
+                  
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/left.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 50%
+                      left: 20%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/return.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 50%
+                      left: 50%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/right.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 50%
+                      left: 80%
+                  
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/voldown.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 70%
+                      left: 20%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/down.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 70%
+                      left: 50%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/down-triangle.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 70%
+                      left: 80%
+                  
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/back.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 90%
+                      left: 20%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/mute.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 90%
+                      left: 50%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/logout.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 90%
+                      left: 80%
+            - type: conditional
+              conditions:
+               - entity:   input_boolean.fan
+                 state: "on"
+              card:
+                type: picture-elements
+                image: /local/images/68.jpg?v2.4
+                elements: 
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/speed.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 50%
+                      left: 20%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/rotate.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 50%
+                      left: 40%
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/mode.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 50%
+                      left: 60% 
+                  - type: image 
+                    entity: script.1553761625601
+                    tap_action: 
+                      action: toggle
+                    image: /local/images/remote/sleep-mode.svg?v1
+                    style: 
+                      <<: *style_anchor
+                      top: 50%
+                      left: 80% 
+  - badges: []
+    icon: 'mdi:weather-cloudy'
+    path: 'weather'
+    background: center / cover no-repeat url("/local/9260.jpg") fixed
+    title: Weather
+    cards:
+      - type: custom:card-modder
+        style:
+          background-color: rgba(0,0,0,0)
+          color: rgb(0 , 0 ,0 )
+        card:
+          type: custom:vertical-stack-in-card
+          title: Thời tiết
+          cards:
+            - type: custom:swipe-card
+              cards:
+                - type: custom:card-modder
+                  style:
+                    background-color: rgba(0,0,0,0)
+                    color: rgb(0 , 0, 0)
+                  card:
+                    type: custom:vertical-stack-in-card
+                    cards:
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                          background-size: 100% 100%
+                          color: rgb(255, 255, 255)
+                        card:
+                          type: glance
+                          show_name: true
+                          show_state: true
+                          columns: 2
+                        entities:
+                          - entity: sensor.weathertoday
+                            tap_action: 
+                              action: none
+                            icon: mdi:cloud
+                            name: Thời tiết
+                          - entity:  sensor.sun_state
+                            tap_action: 
+                              action: none
+                            name: Mặt trời
+                            icon: mdi:white-balance-sunny
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                          background-size: 100% 100%
+                          color: rgb(255, 255, 255)
+                        card:
+                          type: custom:weather-card
+                          entity: weather.dark_sky
+                          icons: "/local/icons/weather_icons/animated/"
+                - type: custom:vertical-stack-in-card
+                  cards:
+                    - type: custom:card-modder
+                      style:
+                        background-size: 100% 100%
+                        border: solid 1px rgba(100,100,100,0.3)
+                      card:
+                        type: custom:simple-weather-card
+                        entity: weather.dark_sky
+                        name: Ho Chi Minh
+                        backdrop: true
+  - badges: []
+    icon: 'mdi:apps'
+    path: 'utilities'
+    background: center / cover no-repeat url("/local/9817.jpg") fixed
+    title: Utilities
+    cards:
+      - type: custom:card-modder
+        style:
+          background-color: rgba(0,0,0,0)
+          color: rgb(0, 0, 0)
+        card:
+          type: custom:vertical-stack-in-card
+          title: Ghi chú
+          cards:
+            - type: custom:card-modder
+              style:
+                background-color: rgba(0,0,0,0)
+                background-size: 100% 100%
+                color: rgb(0 , 0, 0)
+              card:
+                type: shopping-list
+      - type: custom:card-modder
+        style:
+          background-color: rgba(0,0,0,0)
+          color: rgb(0, 0, 0)
+        card:
+          type: custom:vertical-stack-in-card
+          title: Báo thức
+          cards:
+            - type: custom:card-modder
+              style:
+                background-color: rgba(0,0,0,0)
+                background-size: 100% 100%
+                color: rgb(0 , 0, 0)
+              card:
+                type: entities
+                show_header_toggle: false
+                entities:
+                  - entity: automation.alarm_clock
+                    icon: mdi:timetable
+                    name: Trạng thái
+                  - entity: sensor.alarm_time
+                    name: Thời gian báo thức
+                    icon: mdi:alarm-plus
+                  - entity: input_number.slider1
+                    name: Giờ
+                    icon: mdi:av-timer
+                  - entity: input_number.slider2
+                    name: Phút
+                    icon: mdi:timer
+                  - entity: input_number.slider4
+                    name: Chọn âm báo thức
+                  - entity: input_number.slider3
+                    name: Âm lượng
+                  - entity: input_boolean.alarmweekday
+                    name: Báo thức cuối tuần
+                    icon: mdi:calendar-clock
+###System###
+  - badges: []
+    icon: 'mdi:server-minus'
+    path: 'system'
+    background: center / cover no-repeat url("/local/systembg.jpg") fixed
+    title: System
+    cards:
+      - type: custom:swipe-card
+        cards:
+          - type: custom:card-modder
+            style:
+              background-color: rgba(0,0,0,0)
+              color: rgb(0, 0, 0)
+            card:
+              type: custom:vertical-stack-in-card
+              title: Hệ thống
+              cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                          background-size: 50% 50%
+                        card:
+                          type: glance
+                          show_name: true
+                          show_state: true
+                          entities:
+                            - entity:  sensor.cpu_speed
+                              tap_action: 
+                                action: none
+                              name: Xung nhịp
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                          background-size: 50% 50%
+                        card:
+                          type: glance
+                          show_name: true
+                          show_state: true
+                          entities:
+                            - entity:  sensor.processor_use
+                              tap_action: 
+                                action: none
+                              name: Tiến trình
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                        card:
+                          type: custom:mini-graph-card
+                          align_state: center
+                          show: 
+                            name: true
+                            icon: false
+                            state: true
+                            points: false
+                          entities:
+                            - entity: sensor.memory_free
+                          name: Ram trống
+                          hours_to_show: 24
+                          points_per_hour: 1
+                          graph: line
+                          line_color:
+                            - '#020ef4'
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                        card:
+                          type: custom:mini-graph-card
+                          align_state: center
+                          show: 
+                            name: true
+                            icon: false
+                            state: true
+                            points: false
+                          entities:
+                            - entity: sensor.memory_use
+                          name: Ram dùng
+                          hours_to_show: 24
+                          points_per_hour: 1
+                          graph: line
+                          line_color:
+                            - '#f47f03'
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                        card:
+                          type: glance
+                          show_name: true
+                          show_state: true
+                          entities:
+                            - entity:  sensor.current_version
+                              tap_action: 
+                                action: none
+                      - type: custom:card-modder
+                        style:
+                          background-color: rgba(0,0,0,0)
+                        card:
+                          type: glance
+                          show_name: true
+                          show_state: true
+                          entities:
+                            - entity:  sensor.time_online
+                              tap_action: 
+                                action: none
+                              name: Online
+          - type: custom:card-modder
+            style:
+              background-color: rgba(0,0,0,0)
+              color: rgb(0, 0, 0)
+            card:
+              type: custom:vertical-stack-in-card
+              title: Cảnh báo
+              cards:
+                - type: custom:card-modder
+                  style:
+                    background-color: rgba(0,0,0,0)
+                    background-size: 100% 100%
+                    color: rgb(0 , 0, 0)
+                  card:
+                    type: alarm-panel
+                    entity: alarm_control_panel.home_alarm

@@ -1,0 +1,35 @@
+- id: '1557364429518'
+  alias: Alarm clock
+  trigger:
+  - at: '5:00'
+    platform: time
+  condition: []
+  action:
+  - service: automation.turn_on
+- id: '1557386400179'
+  alias: auto fan
+  trigger:
+  - entity_id: input_boolean.fan
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id:
+      - input_boolean.tivi
+- id: '1557386437998'
+  alias: auto tivi
+  trigger:
+  - entity_id: input_boolean.tivi
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id:
+      - input_boolean.fan
+
